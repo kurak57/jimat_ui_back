@@ -1,0 +1,212 @@
+// Create User
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name": "Admin",
+    "fakultas": "all",
+    "email": "admin@gmail.com",
+    "password": "123456",
+    "confPassword": "123456",
+    "role": "admin"
+}
+###
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{
+    "name": "anto",
+    "fakultas": "Hukum",
+    "email": "anto@gmail.com",
+    "password": "123456",
+    "confPassword": "123456",
+    "role": "user"
+}
+
+
+###
+// get all users
+GET http://localhost:5000/users
+
+###
+// get single user
+GET http://localhost:5000/users/46eeab75-b709-4d17-beb4-2a736444ab17
+
+###
+// Update User
+PATCH  http://localhost:5000/users/20b4816e-e4f2-454e-8a9f-ed80bc768bf9
+Content-Type: application/json
+
+{
+    "name": "Joni2",
+    "email": "joni@gmail.com",
+    "password": "",
+    "confPassword": "",
+    "role": "admin"
+}
+
+###
+// delete user
+DELETE http://localhost:5000/users/68cf367b-bd40-4d41-8e29-c290de0c7f8e
+
+//----------===========------Login/Logout----------==============
+###
+//login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    # "email": "asep@gmail.com",
+    "password": "123456"
+}
+
+###
+GET  http://localhost:5000/me
+
+###
+DELETE http://localhost:5000/logout
+
+//--------==============------Interest API-------=============---
+###
+// get all interest
+GET http://localhost:5000/interests
+
+###
+// get single interest
+GET http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34
+
+###
+// get fakultas avg data 
+GET http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34/avg
+
+###
+// get all avg data 
+GET http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34/avgall
+
+###
+// Create data Interest
+POST http://localhost:5000/interests
+Content-Type: application/json
+
+{
+    "name": "ican",
+    "fakultas": "FIB",
+    "k2nTematik": "7",
+    "pertukaranPelajar": "6",
+    "magang": "2",
+    "asistensiMengajar": "6",
+    "penelitian": "2",
+    "kemanusiaan": "7",
+    "wirausaha": "3",
+    "stupen": "4"    
+}
+
+###
+// Update data Interest
+PATCH  http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34
+Content-Type: application/json
+
+{
+    "name": "ican",
+    "fakultas": "FISIP",
+    "k2nTematik": "7",
+    "pertukaranPelajar": "6",
+    "magang": "2",
+    "asistensiMengajar": "6",
+    "penelitian": "2",
+    "kemanusiaan": "7",
+    "wirausaha": "3",
+    "stupen": "4"      
+}
+
+###
+DELETE   http://localhost:5000/interests/0d7a9cdf-3ff2-4ebe-903a-dab53c8bda96
+
+# =================SCORE====================
+###
+POST http://localhost:5000/scores
+Content-Type: application/json
+
+{
+    "name": "klin",
+    "fakultas": "FISIP",
+    "sf_like": "20", "sf_comp": "40",
+    "ma_like": "20", "ma_comp": "40",
+    "bd_like": "20", "bd_comp": "40",
+    "dp_like": "20", "dp_comp": "40",
+    "me_like": "20", "me_comp": "40",
+    "no_like": "20", "no_comp": "40",
+    "ar_like": "20", "ar_comp": "40",
+    "he_like": "20", "he_comp": "40",
+    "ss_like": "30", "ss_comp": "40",
+    "in_like": "30", "in_comp": "41",
+    "bs_like": "30", "bs_comp": "41",
+    "fa_like": "30", "fa_comp": "41",
+    "sc_like": "30", "sc_comp": "41",
+    "qc_like": "30", "qc_comp": "41",
+    "mw_like": "57", "mw_comp": "50",
+    "ps_like": "57", "ps_comp": "50",
+    "cr_like": "57", "cr_comp": "50",
+    "bse_like": "57", "bse_comp": "50",
+    "pertukaranPelajar": "40",
+    "magang": "55",
+    "asistensiMengajar": "40",
+    "penelitian": "60",
+    "kemanusiaan": "37",
+    "wirausaha": "20",
+    "stupen": "50", 
+    "k2nTematik": "47"
+}
+###
+GET http://localhost:5000/scores
+
+###
+GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608
+
+###
+PATCH  http://localhost:5000/scores/0d7a9cdf-3ff2-4ebe-903a-dab53c8bda96
+Content-Type: application/json
+
+{
+    "name": "Susanto",
+    "fakultas": "FIB",
+    "sf_like": "56", "sf_comp": "60",
+    "ma_like": "56", "ma_comp": "60",
+    "bd_like": "56", "bd_comp": "60",
+    "dp_like": "56", "dp_comp": "60",
+    "me_like": "56", "me_comp": "60",
+    "no_like": "56", "no_comp": "60",
+    "ar_like": "56", "ar_comp": "60",
+    "he_like": "56", "he_comp": "60",
+    "ss_like": "54", "ss_comp": "60",
+    "in_like": "54", "in_comp": "51",
+    "bs_like": "54", "bs_comp": "51",
+    "fa_like": "54", "fa_comp": "51",
+    "sc_like": "54", "sc_comp": "51",
+    "qc_like": "54", "qc_comp": "51",
+    "mw_like": "47", "mw_comp": "48",
+    "ps_like": "47", "ps_comp": "48",
+    "cr_like": "47", "cr_comp": "48",
+    "bse_like": "47", "bse_comp": "48",
+    "pertukaranPelajar": "60",
+    "magang": "45",
+    "asistensiMengajar": "46",
+    "penelitian": "52",
+    "kemanusiaan": "57",
+    "wirausaha": "38",
+    "stupen": "49", 
+    "k2nTematik": "47"
+}
+
+###
+DELETE http://localhost:5000/scores/a75362f2-fcb2-45b3-bf00-e96c3fb011ad
+
+
+###
+// get fakultas avg data 
+GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608/fakultas
+
+###
+// get all avg data 
+GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608/univ
