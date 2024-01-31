@@ -19,9 +19,9 @@ const store = new sessionStore ({
     db: db
 }); 
 
-(async()=>{
-    await db.sync();
-})();
+// (async()=>{
+//     await db.sync();
+// })();
 
 app.use(session({
     secret: process.env.SESS_SECRET,
@@ -44,7 +44,7 @@ app.use(AuthRoute);
 app.use(ScoreRoute);
 
 
-store.sync();
+// store.sync();
 
 app.listen(process.env.APP_PORT, () => {
     console.log("Server berjalan di port "+ process.env.APP_PORT);

@@ -210,3 +210,6 @@ GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608/fakultas
 ###
 // get all avg data 
 GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608/univ
+
+###
+POST http://localhost:5000/users/import-excel
