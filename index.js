@@ -49,3 +49,7 @@ app.use(ScoreRoute);
 app.listen(process.env.APP_PORT, () => {
     console.log("Server berjalan di port "+ process.env.APP_PORT);
 });
+
+app.get('/', (req, res) => {
+    res.send('API JIMAT UI RUNNING')
+  })
