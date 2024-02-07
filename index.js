@@ -2,12 +2,12 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
-import db from "../config/Database.js";
+import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
-import UserRoute from "../routes/UserRoute.js";
-import InterestRoute from "../routes/InterestRoute.js";
-import AuthRoute from "../routes/AuthRoute.js";
-import ScoreRoute from "../routes/ScoreRoute.js"
+import UserRoute from "./routes/UserRoute.js";
+import InterestRoute from "./routes/InterestRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
+import ScoreRoute from "./routes/ScoreRoute.js"
 
 dotenv.config();
 
@@ -46,7 +46,7 @@ app.use(ScoreRoute);
 
 // store.sync();
 
-const port = process.env.APP_PORT || 5000
+const port = process.env.PORT || 5000
 
 app.listen(port, () => {
     console.log(`Server berjalan di http://localhost:${port}`);
