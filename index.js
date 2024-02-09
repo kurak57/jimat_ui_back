@@ -52,6 +52,10 @@ app.get('/', (req, res) => {
     res.send('API JIMAT UI RUNNING')
 });
 
+app.get('/favicon.ico', (req, res) => {
+    res.sendStatus(404);
+});
+
 app.listen(port, () => {
     console.log(`Server berjalan di http://localhost:${port}`);
 });
