@@ -35,7 +35,7 @@ app.use(session({
 
 app.use(cors({
     credentials: true,
-    origin: 'https://jimat-ui-front-k3cjs6mqo-kurak57s-projects.vercel.app'
+    origin: 'http://localhost:3000/'  || 'https://jimat-ui-back.vercel.app/'
 }));
 app.use(express.json());
 app.use(UserRoute);
