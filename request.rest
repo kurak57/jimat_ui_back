@@ -52,8 +52,8 @@ DELETE http://localhost:5000/users/68cf367b-bd40-4d41-8e29-c290de0c7f8e
 //----------===========------Login/Logout----------==============
 ###
 //login user
-POST http://localhost:5000/login
-# POST https://pasta-finder-back.vercel.app/login
+# POST http://localhost:5000/login
+POST https://jimat-ui-back.vercel.app/login
 Content-Type: application/json
 
 {
@@ -63,7 +63,7 @@ Content-Type: application/json
 }
 
 ###
-GET  https://pasta-finder-back.vercel.app/me
+GET  https://jimat-ui-back.vercel.app/me
 
 ###
 DELETE http://localhost:5000/logout
