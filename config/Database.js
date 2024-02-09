@@ -15,7 +15,6 @@ const db = new Sequelize({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
-    dialectModule: mysql2,
     dialect: "mysql"
 })
 export default db;
