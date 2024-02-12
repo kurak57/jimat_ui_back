@@ -1,5 +1,5 @@
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 app.use(cors({
-    // credentials: false
+    credentials: false,
     // // origin: 'https://jimat-ui-front.vercel.app'
     origin: 'http://localhost:3000'
 }));
