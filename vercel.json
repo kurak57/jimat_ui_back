@@ -9,11 +9,7 @@
   "routes": [
       {
           "src": "/(.*)",
-          "dest": "/index.js",
-          "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"],
-          "headers": {
-            "Access-Control-Allow-Origin": "http://localhost:3000"
-          }
+          "dest": "/index.js"
       }
   ]
 }
