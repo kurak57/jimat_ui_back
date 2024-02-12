@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 app.use(cors({
-    credentials: false,
+    credentials: true,
     origin: process.env.Front_origin
 }));
 app.use(express.json());
