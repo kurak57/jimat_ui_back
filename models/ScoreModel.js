@@ -26,6 +26,7 @@ const Scores = db.define('score', {
         allowNull: false,
         validate: {
             notEmpty: true,
+            len: [3, 100]
         }
     },
     sf_like:{

@@ -1,5 +1,8 @@
 import User from "../models/UserModel.js";
 import argon2, { hash } from 'argon2';
+import Token from "../models/TokenModel.js";
+import sendEmail from "../Utils/sendEmail.js";
+import crypto from "crypto";
 
 export const getUsers = async (req, res) => {
     try {
@@ -28,7 +31,10 @@ export const getUserById = async(req, res) => {
 
 export const createUser = async(req, res) => {
     const {name, fakultas, email, password, confPassword, role} = req.body;
-    const user = await User.findOne({
+    if (!email.endsWith('@ui.ac.id')) {
+        return res.status(400).json({msg: "Email harus menggunakan domain @ui.ac.id"});
+    }
+    let user = await User.findOne({
         where: {
             email: req.body.email
         }
@@ -37,18 +43,27 @@ export const createUser = async(req, res) => {
     if(password!==confPassword) return res.status(400).json({msg: "Password dan confirm password tidak sesuai"})
     const hashPassword = await argon2.hash(password);
     try {
-        await User.create({
+        user = await User.create({
             name: name,
             fakultas: fakultas,
             email: email,
             password: hashPassword,
             role: role
         });
-        res.status(201).json({msg: "Registrasi Berhasil"})
+         const token = await Token.create({
+            userId: user.uuid,
+            token: crypto.randomBytes(32).toString("hex") 
+         })
+
+        const url = `${process.env.Front_origin}/users/${user.uuid}/verify${token.token}`;
+        await sendEmail(user.email, "Verify Email", url)
+
+        res.status(201).json({msg: "An Email sent to your account please verify"})
     } catch (error) {
         res.status(400).json({msg: error.message});
     }
 }
+
 export const updateUser = async (req, res) => {
     const user = await User.findOne({
         where: {

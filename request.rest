@@ -47,26 +47,27 @@ Content-Type: application/json
 
 ###
 // delete user
-DELETE http://localhost:5000/users/68cf367b-bd40-4d41-8e29-c290de0c7f8e
+DELETE http://localhost:5000/users/4fbc52cc-18fe-420e-a4fe-3550a7a54c8c
 
 //----------===========------Login/Logout----------==============
 ###
 //login user
-# POST http://localhost:5000/login
-POST https://jimat-ui-back.vercel.app/login
+POST http://localhost:5000/login
+# POST https://jimat-ui-back-xqac.vercel.app/login
 Content-Type: application/json
 
 {
-    "email": "admin@gmail.com",
-    # "email": "asep@gmail.com",
+    # "email": "admin@gmail.com",
+    "email": "novi@gmail.com",
     "password": "123456"
 }
 
 ###
-GET  https://jimat-ui-back.vercel.app/me
+# GET  http://jimat-ui-back-xqac.vercel.app/me
+GET http://localhost:5000/me
 
 ###
-DELETE http://jimat-ui-back.vercel.app/logout
+DELETE http://jimat-ui-back-xqac.vercel.app/logout
 
 //--------==============------Interest API-------=============---
 ###

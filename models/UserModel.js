@@ -50,6 +50,13 @@ const Users = db.define('users', {
             notEmpty: true
         }
     },
+    isVerified:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        validate: {
+            notEmpty: true
+        }
+    }
 }, {
     freezeTableName: true
 });
