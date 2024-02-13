@@ -4,7 +4,7 @@ import Users from "./UserModel.js";
 
 const Token = db.define("token", {
   userId:{
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
         notEmpty: true
@@ -24,5 +24,5 @@ const Token = db.define("token", {
 }, {
   freezeTableName: true
 });
-Token.belongsTo(Users, {foreignKey: 'userId'});
+
 export default Token;

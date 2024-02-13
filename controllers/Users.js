@@ -34,15 +34,16 @@ export const createUser = async(req, res) => {
     if (!email.endsWith('@ui.ac.id')) {
         return res.status(400).json({msg: "Email harus menggunakan domain @ui.ac.id"});
     }
-    let user = await User.findOne({
-        where: {
-            email: req.body.email
-        }
-    });
-    if(user) return res.status(400).json({msg: "Email sudah digunakan"})
-    if(password!==confPassword) return res.status(400).json({msg: "Password dan confirm password tidak sesuai"})
-    const hashPassword = await argon2.hash(password);
     try {
+        let user = await User.findOne({
+            where: {
+                email: req.body.email
+            }
+        });
+        if(user) return res.status(400).json({msg: "Email sudah digunakan"})
+        if(password!==confPassword) return res.status(400).json({msg: "Password dan confirm password tidak sesuai"})
+        const hashPassword = await argon2.hash(password);
+
         user = await User.create({
             name: name,
             fakultas: fakultas,
@@ -51,10 +52,11 @@ export const createUser = async(req, res) => {
             role: role
         });
          const token = await Token.create({
+            userId: user.uuid,
             token: crypto.randomBytes(32).toString("hex") 
          })
 
-        const url = `${process.env.Base_url}/users/${user.id}/verify/${token.token}`;
+        const url = `${process.env.Base_url}/users/${user.uuid}/verify/${token.token}`;
         await sendEmail(user.email, "Verify Email", url)
 
         res.status(201).json({msg: "An Email sent to your account please verify"})

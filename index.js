@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import UserRoute from "./routes/UserRoute.js";
-import InterestRoute from "./routes/InterestRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import ScoreRoute from "./routes/ScoreRoute.js"
 
@@ -39,7 +38,6 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(UserRoute);
-app.use(InterestRoute);
 app.use(AuthRoute);
 app.use(ScoreRoute);
 
