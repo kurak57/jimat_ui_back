@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "name": "Admin",
     "fakultas": "all",
-    "email": "admin@gmail.com",
+    "email": "tomi.timutius@ui.ac.id",
     "password": "123456",
     "confPassword": "123456",
     "role": "admin"
@@ -15,9 +15,9 @@ POST http://localhost:5000/signup
 Content-Type: application/json
 
 {
-    "name": "anto",
+    "name": "antoku",
     "fakultas": "Hukum",
-    "email": "anto1@gmail.com",
+    "email": "anto1@ui.ac.id",
     "password": "123456",
     "confPassword": "123456",
     "role": "user"
@@ -58,7 +58,7 @@ Content-Type: application/json
 
 {
     # "email": "admin@gmail.com",
-    "email": "novi@gmail.com",
+    "email": "tomi.timutius@ui.ac.id",
     "password": "123456"
 }
 

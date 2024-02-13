@@ -1,19 +1,18 @@
-import { Sequelize } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../config/Database.js";
-
-const {DataTypes} = Sequelize;
+import Users from "./UserModel.js";
 
 const Token = db.define("token", {
-  userUUID:{
+  userId:{
     type: DataTypes.INTEGER,
     allowNull: false,
-    unique: true,
     validate: {
         notEmpty: true
     }
 },
   token: {
     type: DataTypes.STRING,
+    unique: true,
     allowNull: false
   },
   createdAt: {
@@ -22,5 +21,8 @@ const Token = db.define("token", {
     allowNull: false,
     expires: 3600
   }
+}, {
+  freezeTableName: true
 });
+Token.belongsTo(Users, {foreignKey: 'userId'});
 export default Token;

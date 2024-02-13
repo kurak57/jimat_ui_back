@@ -51,11 +51,10 @@ export const createUser = async(req, res) => {
             role: role
         });
          const token = await Token.create({
-            userId: user.uuid,
             token: crypto.randomBytes(32).toString("hex") 
          })
 
-        const url = `${process.env.Front_origin}/users/${user.uuid}/verify${token.token}`;
+        const url = `${process.env.Base_url}/users/${user.id}/verify/${token.token}`;
         await sendEmail(user.email, "Verify Email", url)
 
         res.status(201).json({msg: "An Email sent to your account please verify"})
