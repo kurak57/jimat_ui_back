@@ -53,7 +53,7 @@ DELETE http://localhost:5000/users/4fbc52cc-18fe-420e-a4fe-3550a7a54c8c
 ###
 //login user
 # POST http://localhost:5000/login
-POST https://jimat-ui-back.vercel.app/
+POST https://jimat-ui-back.vercel.app/login
 Content-Type: application/json
 
 {
