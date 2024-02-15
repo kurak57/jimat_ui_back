@@ -16,18 +16,6 @@ export const Login = async (req, res) => {
         const match = await argon2.verify(user.password, req.body.password);
         if(!match) return res.status(400).json({msg: "Password Salah"});
         req.session.userId = user.uuid;
-
-        return res.status(200).json({
-            data: {
-                uuid: user.uuid, 
-                name: user.name, 
-                email: user.email, 
-                role: user.role
-            },
-            token: token
-        }
-            
-        );
     } catch (error) {
         res.status(500).send({ msg: "Internal Server Error" });
     }
