@@ -1,5 +1,5 @@
 import Token from "../models/TokenModel.js";
-import sendEmail from "../Utils/sendEmail.js";
+import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 import User from "../models/UserModel.js";
 import argon2 from 'argon2';

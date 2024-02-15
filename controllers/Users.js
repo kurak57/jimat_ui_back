@@ -1,7 +1,7 @@
 import User from "../models/UserModel.js";
 import argon2, { hash } from 'argon2';
 import Token from "../models/TokenModel.js";
-import sendEmail from "../Utils/sendEmail.js";
+import sendEmail from "../utils/sendEmail.js"
 import crypto from "crypto";
 
 export const getUsers = async (req, res) => {
