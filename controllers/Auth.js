@@ -32,7 +32,6 @@ export const Login = async (req, res) => {
         const name = user.name;
         const email = user.email;
         const role = user.role;
-        const verified = user.isVerified;
         return res.status(200).json({uuid, name, email, role});
     } catch (error) {
         res.status(500).send({ msg: "Internal Server Error" });
