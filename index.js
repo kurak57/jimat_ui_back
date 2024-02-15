@@ -34,7 +34,7 @@ app.use(session({
 
 app.use(cors({
     credentials: true,
-    origin: process.env.Front_origin
+    origin: process.env.Base_url
 }));
 app.use(express.json());
 app.use(UserRoute);
@@ -57,4 +57,3 @@ app.get('/favicon.ico', (req, res) => {
 app.listen(port, () => {
     console.log(`Server berjalan di http://localhost:${port}`);
 });
-

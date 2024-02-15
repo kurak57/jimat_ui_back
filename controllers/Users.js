@@ -61,7 +61,7 @@ export const createUser = async(req, res) => {
 
         res.status(201).json({msg: "An Email sent to your account please verify"})
     } catch (error) {
-        res.status(400).json({msg: error.message});
+        res.status(400).json({msg: "Data tidak boleh kosong"});
     }
 }
 

@@ -20,13 +20,13 @@ export const Login = async (req, res) => {
             let token = await Token.findOne({ where: { userId: user.id }, });
             if (!token) {
                 token = await Token.create({
-                    userId: user.id,
+                    userId: user.uuid,
                     token: crypto.randomBytes(32).toString("hex") 
                  })
-                const url = `${process.env.Base_url}/users/${user.id}/verify/${token.token}`;
+                const url = `${process.env.Base_url}/users/${user.uuid}/verify/${token.token}`;
                 await sendEmail(user.email, "Verify Email", url);
             } 
-            return res.status(400).send({ message: "An Email sent to your account please verify" });
+            return res.status(400).send({ msg: "An Email sent to your account please verify" });
         }
         const uuid = user.uuid;
         const name = user.name;
@@ -35,7 +35,7 @@ export const Login = async (req, res) => {
         const verified = user.isVerified;
         return res.status(200).json({uuid, name, email, role});
     } catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
+        res.status(500).send({ msg: "Internal Server Error" });
     }
     
 };
@@ -54,7 +54,7 @@ export const Me  = async (req, res) => {
         if(!user) return res.status(404).json({msg: "User tidak ditemukan"});
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
+        res.status(500).send({ msg: "Internal Server Error" });
     }
 }
 
@@ -65,7 +65,7 @@ export const logOut = (req, res) => {
             res.status(200).json({msg: "Anda telah logout"});
         });
     } catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
+        res.status(500).send({ msg: "Internal Server Error" });
     }
 }
 
@@ -76,12 +76,12 @@ export const verifyToken = async (req, res) => {
                 uuid: req.params.id 
             }
         });
-        if (!user) return res.status(400).send({ message: "user tidak ditemukan" });
+        if (!user) return res.status(400).send({ msg: "user tidak ditemukan" });
 
         const token = await Token.findOne({
             where: { userId: user.uuid, token: req.params.token },
         });
-        if (!token) return res.status(400).send({ message: "Invalid link, token salah" });
+        if (!token) return res.status(400).send({ msg: "Invalid link, token salah" });
         await User.update({
             isVerified: true,
         }, {
@@ -90,9 +90,8 @@ export const verifyToken = async (req, res) => {
             }
         });
         await token.destroy();
-
-        res.status(200).send({ message: "Email verified successfully" });
+        res.status(200).send({ msg: "Email verified successfully" });
     } catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
+        res.status(500).send({ msg: "Internal Server Error" });
     }
 }
