@@ -27,6 +27,9 @@ Content-Type: application/json
 ###
 // get all users
 GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODA2OTU1NSwiZXhwIjoxNzA4MDY5NTc1fQ.zAf70DfUVOVg9PqVqfTkk6hWvr9nih5jOfPqfOuDg_w
+###
+GET http://localhost:5000/token
 
 ###
 // get single user
@@ -52,8 +55,8 @@ DELETE http://localhost:5000/users/4fbc52cc-18fe-420e-a4fe-3550a7a54c8c
 //----------===========------Login/Logout----------==============
 ###
 //login user
-# POST http://localhost:5000/login
-POST https://jimat-ui-back.vercel.app/login
+POST http://localhost:5000/login
+# POST https://jimat-ui-back.vercel.app/login
 Content-Type: application/json
 
 {
@@ -70,7 +73,7 @@ GET http://localhost:5000/users/2/verify/ba82543c37cc1841f1e7081c16698ea82323c27
 GET http://localhost:5000/me
 
 ###
-DELETE http://jimat-ui-back-xqac.vercel.app/logout
+DELETE http://localhost:5000/logout
 
 //--------==============------Interest API-------=============---
 ###

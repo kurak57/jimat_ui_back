@@ -1,41 +1,31 @@
 import express from "express";
 import cors from "cors";
-import session from "express-session";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
-import SequelizeStore from "connect-session-sequelize";
+import cookieParser from "cookie-parser"
 import UserRoute from "./routes/UserRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import ScoreRoute from "./routes/ScoreRoute.js"
 
 dotenv.config();
-
 const app = express();
-
-const sessionStore = SequelizeStore(session.Store);
-
-const store = new sessionStore ({
-    db: db
-}); 
 
 // (async()=>{
 //     await db.sync();
 // })();
-
-app.use(session({
-    secret: process.env.SESS_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: store,
-    cookie: {
-        secure: "auto"
-    }
-}));
+try {
+    await db.authenticate();
+    console.log('Database Connected...');
+} catch (error) {
+    console.log(error);
+}
 
 app.use(cors({
     credentials: true,
     origin: process.env.Base_url
 }));
+
+app.use(cookieParser())
 app.use(express.json());
 app.use(UserRoute);
 app.use(AuthRoute);
