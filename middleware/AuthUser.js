@@ -25,4 +25,3 @@ export const adminOnly = async (req, res, next) => {
         next();
     });
 };
-
