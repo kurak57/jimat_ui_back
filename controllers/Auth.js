@@ -15,7 +15,6 @@ export const Login = async (req, res) => {
         if(!user) return res.status(404).json({msg: "User tidak ditemukan"});
         const match = await argon2.verify(user.password, req.body.password);
         if(!match) return res.status(400).json({msg: "Password Salah"});
-        req.session.userId = user.uuid;
         if(!user.isVerified){
             let emailToken = await Token.findOne({ where: { userId: user.id }, });
             if (!emailToken) {
@@ -28,58 +27,81 @@ export const Login = async (req, res) => {
             } 
             return res.status(400).send({ msg: "An Email sent to your account please verify" });
         }
-       
-        const secret = process.env.JWT_SECRET;
-        const expiresIn = 60 * 60 * 2
-        const payload = {
-            uuid: user.uuid, 
-            name: user.name, 
-            email: user.email, 
-            role: user.role
-        }
-        const token = jwt.sign(payload, secret, {expiresIn: expiresIn})
+       const id = user.id
+       const name = user.name
+       const email = user.email
+       const fakultas = user.fakultas
+       const role = user.role
 
-        return res.status(200).json({
-            data: {
-                uuid: user.uuid, 
-                name: user.name, 
-                email: user.email, 
-                role: user.role
-            },
-            token: token
+       const accessToken = jwt.sign({id, name, email, fakultas, role}, process.env.JWT_ACCESS, {
+        expiresIn: '20s'
+       });
+       const refreshToken = jwt.sign({id, name, email, fakultas, role}, process.env.JWT_REFRESH, {
+        expiresIn: '1d'
+       });
+       await User.update({refresh_token:refreshToken}, {
+        where: {
+            id : user.id
         }
-            
-        );
+       });
+       res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+        secure: false
+       })
+       res.json({accessToken})
+
     } catch (error) {
         res.status(500).send({ msg: "Internal Server Error" });
-    }
-    
+    } 
 };
 
-export const Me  = async (req, res) => {
+export const Me = async (req, res) => {
     try {
-        if(!req.session.userId){
-            return res.status(401).json({msg: "Mohon login ke akun anda!"})
-        };
-        const user = await User.findOne({
-            attributes: ['uuid', 'fakultas', 'name', 'email', 'role'],
-            where: {
-                uuid: req.session.userId
+        const refreshToken = req.cookies.refreshToken;
+        if (!refreshToken) {
+            return res.status(401).json({ msg: "Silahkan login ke akun anda" });
+        }
+        jwt.verify(refreshToken, process.env.JWT_REFRESH, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ msg: "Token tidak valid" });
+            } else {
+                const userId = decoded.id;
+                const user = await User.findOne({
+                    attributes: ['uuid', 'fakultas', 'name', 'email', 'role'],
+                    where: {
+                        id: userId
+                    }
+                });
+                if (!user) {
+                    return res.status(404).json({ msg: "User tidak ditemukan" });
+                }
+                return res.status(200).json(user);
             }
         });
-        if(!user) return res.status(404).json({msg: "User tidak ditemukan"});
-        res.status(200).json(user);
     } catch (error) {
         res.status(500).send({ msg: "Internal Server Error" });
     }
-}
+};
 
-export const logOut = (req, res) => {
+export const logOut = async (req, res) => {
     try {
-        req.session.destroy((err) => {
-            if(err) return res.status(400).json({msg: "Logout gagal"});
-            res.status(200).json({msg: "Anda telah logout"});
+        const refreshToken = req.cookies.refreshToken
+        if(!refreshToken) return res.sendStatus(204);
+        const user = await User.findOne({
+            where: {
+                refresh_token: refreshToken
+            }
         });
+        if(!user) return res.sendStatus(204);
+        const userId = user.id;
+        await User.update({refreshToken: null}, {
+            where: {
+                id: userId
+            }
+        });
+        res.clearCookie('refreshToken');
+        return res.sendStatus(200);
     } catch (error) {
         res.status(500).send({ msg: "Internal Server Error" });
     }
