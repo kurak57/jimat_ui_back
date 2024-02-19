@@ -31,9 +31,6 @@ app.use(UserRoute);
 app.use(AuthRoute);
 app.use(ScoreRoute);
 
-
-// store.sync();
-
 const port = process.env.PORT || 5000
 
 app.get('/', (req, res) => {
