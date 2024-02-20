@@ -56,8 +56,8 @@ DELETE http://localhost:5000/users/4fbc52cc-18fe-420e-a4fe-3550a7a54c8c
 //----------===========------Login/Logout----------==============
 ###
 //login user
-POST http://localhost:5000/login
-# POST https://jimat-ui-back.vercel.app/login
+# POST http://localhost:5000/login
+POST https://jimat-ui-back.vercel.app/login
 Content-Type: application/json
 
 {
@@ -136,9 +136,10 @@ DELETE   http://localhost:5000/interests/0d7a9cdf-3ff2-4ebe-903a-dab53c8bda96
 ###
 POST http://localhost:5000/scores
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODQwMTk2OCwiZXhwIjoxNzA4NDAxOTg4fQ.1HzgXx9Yjio64vRtF4_I0N_M6A8wOZAema0uvf01pFE
 
 {
-    "name": "klin",
+    "name": "agag",
     "fakultas": "FISIP",
     "sf_like": "20", "sf_comp": "40",
     "ma_like": "20", "ma_comp": "40",
@@ -158,14 +159,14 @@ Content-Type: application/json
     "ps_like": "57", "ps_comp": "50",
     "cr_like": "57", "cr_comp": "50",
     "bse_like": "57", "bse_comp": "50",
-    "pertukaranPelajar": "40",
-    "magang": "55",
-    "asistensiMengajar": "40",
-    "penelitian": "60",
-    "kemanusiaan": "37",
-    "wirausaha": "20",
-    "stupen": "50", 
-    "k2nTematik": "47"
+    "pertukaranPelajar": "51",
+    "magang": "45",
+    "asistensiMengajar": "51",
+    "penelitian": "56",
+    "kemanusiaan": "47",
+    "wirausaha": "4528",
+    "stupen": "60", 
+    "k2nTematik": "39"
 }
 ###
 GET http://localhost:5000/scores

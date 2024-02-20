@@ -31,9 +31,9 @@ export const getUserById = async(req, res) => {
 
 export const createUser = async(req, res) => {
     const {name, fakultas, email, password, confPassword, role} = req.body;
-    if (!email.endsWith('@ui.ac.id')) {
-        return res.status(400).json({msg: "Email harus menggunakan domain @ui.ac.id"});
-    }
+    // if (!email.endsWith('@ui.ac.id')) {
+    //     return res.status(400).json({msg: "Email harus menggunakan domain @ui.ac.id"});
+    // }
     try {
         let user = await User.findOne({
             where: {
