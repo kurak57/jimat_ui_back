@@ -27,7 +27,8 @@ Content-Type: application/json
 ###
 // get all users
 GET http://localhost:5000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODA2OTU1NSwiZXhwIjoxNzA4MDY5NTc1fQ.zAf70DfUVOVg9PqVqfTkk6hWvr9nih5jOfPqfOuDg_w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODMxOTY1MywiZXhwIjoxNzA4MzE5NjczfQ.jlPNgMR4EfuaJprgWrx3ITBCT_XYq9ZFlaZFjwXCMGs
+
 ###
 GET http://localhost:5000/token
 
@@ -69,7 +70,7 @@ Content-Type: application/json
 GET http://localhost:5000/users/2/verify/ba82543c37cc1841f1e7081c16698ea82323c27285c01c938739c4555e4ceb3b
 
 ###
-# GET  http://jimat-ui-back-xqac.vercel.app/me
+# GET  http://jimat-ui-back.vercel.app/me
 GET http://localhost:5000/me
 
 ###
