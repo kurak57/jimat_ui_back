@@ -56,8 +56,8 @@ DELETE http://localhost:5000/users/4fbc52cc-18fe-420e-a4fe-3550a7a54c8c
 //----------===========------Login/Logout----------==============
 ###
 //login user
-# POST http://localhost:5000/login
-POST https://jimat-ui-back.vercel.app/login
+POST http://localhost:5000/login
+# POST https://jimat-ui-back.vercel.app/login
 Content-Type: application/json
 
 {
@@ -75,62 +75,6 @@ GET http://localhost:5000/me
 
 ###
 DELETE http://localhost:5000/logout
-
-//--------==============------Interest API-------=============---
-###
-// get all interest
-GET http://localhost:5000/interests
-
-###
-// get single interest
-GET http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34
-
-###
-// get fakultas avg data 
-GET http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34/avg
-
-###
-// get all avg data 
-GET http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34/avgall
-
-###
-// Create data Interest
-POST http://localhost:5000/interests
-Content-Type: application/json
-
-{
-    "name": "ican",
-    "fakultas": "FIB",
-    "k2nTematik": "7",
-    "pertukaranPelajar": "6",
-    "magang": "2",
-    "asistensiMengajar": "6",
-    "penelitian": "2",
-    "kemanusiaan": "7",
-    "wirausaha": "3",
-    "stupen": "4"    
-}
-
-###
-// Update data Interest
-PATCH  http://localhost:5000/interests/b2bbefda-009f-4ae7-bbd5-c1ffa4a72b34
-Content-Type: application/json
-
-{
-    "name": "ican",
-    "fakultas": "FISIP",
-    "k2nTematik": "7",
-    "pertukaranPelajar": "6",
-    "magang": "2",
-    "asistensiMengajar": "6",
-    "penelitian": "2",
-    "kemanusiaan": "7",
-    "wirausaha": "3",
-    "stupen": "4"      
-}
-
-###
-DELETE   http://localhost:5000/interests/0d7a9cdf-3ff2-4ebe-903a-dab53c8bda96
 
 # =================SCORE====================
 ###
@@ -164,12 +108,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6I
     "asistensiMengajar": "51",
     "penelitian": "56",
     "kemanusiaan": "47",
-    "wirausaha": "4528",
+    "wirausaha": "45",
     "stupen": "60", 
     "k2nTematik": "39"
 }
 ###
-GET http://localhost:5000/scores
+GET http://localhost:5000/scores 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODQwODc0MSwiZXhwIjoxNzA4NDA4NzYxfQ.gbaxephqrR2LAJvrpOd13cYfU4zhQKuL5sZlGnvLyVM
+
+###
+GET http://localhost:5000/token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODQwODY5MywiZXhwIjoxNzA4NDk1MDkzfQ.V6dV9As3SPCNNtaTMgTkN2y9zWDOvnRIcWeLJZCPesc
 
 ###
 GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608
@@ -216,7 +165,7 @@ DELETE http://localhost:5000/scores/a75362f2-fcb2-45b3-bf00-e96c3fb011ad
 ###
 // get fakultas avg data 
 GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608/fakultas
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlRvbWkiLCJlbWFpbCI6InRvbWkudGltdXRpdXNAdWkuYWMuaWQiLCJmYWt1bHRhcyI6ImFsbCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwODQwODcxNywiZXhwIjoxNzA4NDA4NzM3fQ.ZGnl1PqxB7ECdAEsAT6Kl3n8jJzjfjLeCotDynNFHLY
 ###
 // get all avg data 
 GET http://localhost:5000/scores/088204b2-21cf-4eb0-969d-70edba53e608/univ

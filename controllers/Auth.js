@@ -86,7 +86,7 @@ export const Me = async (req, res) => {
 
 export const logOut = async (req, res) => {
     try {
-        const refreshToken = req.cookies.refreshToken
+        const refreshToken = req.headers.authorization.split(' ')[1];
         if(!refreshToken) return res.sendStatus(204);
         const user = await User.findOne({
             where: {
@@ -95,10 +95,10 @@ export const logOut = async (req, res) => {
         });
         if(!user) return res.sendStatus(204);
         const userId = user.id;
-        await User.update({refreshToken: null}, {
+        await User.update({ refresh_token: null}, {
             where: {
                 id: userId
-            }
+            },
         });
         res.clearCookie('refreshToken');
         return res.sendStatus(200);
