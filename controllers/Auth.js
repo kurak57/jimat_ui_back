@@ -49,7 +49,7 @@ export const Login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000,
         secure: false
        })
-       res.json({accessToken})
+       res.json({accessToken, refreshToken})
 
     } catch (error) {
         res.status(500).send({ msg: "Internal Server Error" });
@@ -58,7 +58,7 @@ export const Login = async (req, res) => {
 
 export const Me = async (req, res) => {
     try {
-        const refreshToken = req.cookies.refreshToken;
+        const refreshToken = req.headers.authorization.split(' ')[1];
         if (!refreshToken) {
             return res.status(401).json({ msg: "Silahkan login ke akun anda" });
         }
